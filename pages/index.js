@@ -1,8 +1,23 @@
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 
 export default function Home() {
+  const [hasPurchased, setHasPurchased] = useState(false)
+
+  // Check localStorage when the page loads
+  useEffect(() => {
+    const purchased = localStorage.getItem('hasPurchased')
+    if (purchased === 'true') setHasPurchased(true)
+  }, [])
+
+  // Handle button click
+  const handlePurchase = () => {
+    setHasPurchased(true)
+    localStorage.setItem('hasPurchased', 'true')
+  }
+
   return (
     <div className="container">
       <Head>
@@ -17,18 +32,30 @@ export default function Home() {
       <main>
         <Header title="Welcome to The Calculated Trade" />
 
-        <p className="description">
-          Unlock easy-to-use access to the trading strategies and insights shared on The Calculated Trade YouTube channel. <br />
-          Purchase access below to start improving your trades today!
-        </p>
+        {!hasPurchased ? (
+          <>
+            <p className="description">
+              Unlock easy-to-use access to the trading strategies and insights shared on The Calculated Trade YouTube channel. <br />
+              Purchase access below to start improving your trades today!
+            </p>
 
-        <div className="cta">
-          <button className="purchase-button">Purchase Access</button>
-        </div>
+            <div className="cta">
+              <button className="purchase-button" onClick={handlePurchase}>
+                Purchase Access
+              </button>
+            </div>
 
-        <p className="disclaimer">
-          <strong>Disclaimer:</strong> All content shared after purchase is based on mathematical methods and extensive historical backtesting. Results are not guaranteed, and any trading outcomes are at your own risk.
-        </p>
+            <p className="disclaimer">
+              <strong>Disclaimer:</strong> All content shared after purchase is based on mathematical methods and extensive historical backtesting. Results are not guaranteed, and any trading outcomes are at your own risk.
+            </p>
+          </>
+        ) : (
+          <div className="content-after-purchase">
+            <p className="description">
+              Thank you for your purchase! You now have full easy-to-use access to all shared trading strategies and insights. Enjoy your trading journey!
+            </p>
+          </div>
+        )}
       </main>
 
       <Footer />
@@ -63,6 +90,11 @@ export default function Home() {
           font-size: 0.9rem;
           color: #555;
           line-height: 1.4;
+        }
+        .content-after-purchase {
+          margin-top: 2rem;
+          font-size: 1.2rem;
+          color: #333;
         }
       `}</style>
     </div>
