@@ -31,8 +31,13 @@ export default function Home() {
 
       <main>
         <div className="text-center">
-          <Header title="Welcome to The Calculated Trade" />
-          <Header title="Official Website" />
+          <h1 className="text-3xl font-bold inline-block">
+            Welcome to The Calculated Trade
+          </h1>
+          <div className="relative">
+            <span className="text-lg block">Official Website</span>
+            <div className="absolute left-1/2 -translate-x-1/2 w-full border-b-2 border-black mt-1"></div>
+          </div>
         </div>
         {!hasPurchased ? (
           <>
