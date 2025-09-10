@@ -30,8 +30,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header title="Welcome to The Calculated Trade’s official website" />
-
+        <div className="text-center">
+          <Header title="Welcome to The Calculated Trade" />
+          <Header title="Official Website" />
+        </div>
         {!hasPurchased ? (
           <>
             <p className="description">
