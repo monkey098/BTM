@@ -30,7 +30,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header title="Welcome to The Calculated Trade" />
+        <Header title="Welcome to The Calculated Trade’s official website" />
 
         {!hasPurchased ? (
           <>
